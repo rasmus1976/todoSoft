@@ -1,3 +1,3 @@
 Bygg enklast commandline (g++ *.cpp -o todo)
 
-Testat med mingw på win och i Debian (via WSL)
+Testat med mingw, Visual Code (cl) på win och i Debian (via WSL)

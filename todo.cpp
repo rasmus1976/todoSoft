@@ -56,24 +56,6 @@ void CTodoList::sort()
     } 
     while (swapped);
 
-  /*do
-    { 
-        swapped = 0; 
-        ptr1 = start; 
-
-        while (ptr1->pNext != lptr) 
-        { 
-            if (ptr1->getState() > ptr1->pNext->getState()) 
-            { 
-                swap(ptr1, ptr1->pNext); 
-                swapped = 1; 
-            } 
-            ptr1 = ptr1->pNext; 
-        } 
-        lptr = ptr1; 
-    } 
-    while (swapped); */
-
     sorted = true ;
 }
 
