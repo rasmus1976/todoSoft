@@ -12,7 +12,7 @@ CTodoList::~CTodoList()
     {
         destroy();
         delete pList ;
-        printf("list destruct\n");
+     //   printf("list destruct\n");
     }
 }
 

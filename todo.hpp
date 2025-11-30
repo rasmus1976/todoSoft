@@ -29,7 +29,7 @@ class CTodoItem
 		}
 		~CTodoItem()
 		{ 
-			printf("item destruct\n");
+		//	printf("item destruct\n");
 		}
 
         void updateState(item_state newState)
