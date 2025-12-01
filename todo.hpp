@@ -22,40 +22,41 @@ class CTodoItem
 	public:
 		CTodoItem()
 		{
-            data.ID = counter ; //head will be ID 0
+            pData = new item_data_t;
+            pData->ID = counter ; //head will be ID 0
             counter ++; 
-            data.state = normal ;
+            pData->state = normal ;
             pNext = NULL ;
 			//printf("item construct!\n");
 		}
 		~CTodoItem()
         { 
-		//	printf("item destruct\n");
+	//		printf("item destruct\n");
+            if(pData != NULL) delete pData ;
 		}
         
         void swap(CTodoItem *a, CTodoItem *b) 
         { 
-            item_data_t temp = a->data; 
-            a->data = b->data; 
-            b->data = temp; 
+            item_data_t* pTemp = a->pData; 
+            a->pData = b->pData; 
+            b->pData = pTemp; 
         }
 
-        // getter/setters...
-        void updateState(item_state newState) { data.state = newState ; }
+        // getters/setters...
+        void updateState(item_state newState) { pData->state = newState ; }
         
-        void setName(string newName) { data.name = newName ; }
-        const char* getName() { return data.name.c_str() ; }
+        void setName(string newName) { pData->name = newName ; }
+        const char* getName() { return pData->name.c_str() ; }
         
-        int getID() { return data.ID; }
-        item_state getState() { return data.state ; }
+        int getID() { return pData->ID; }
+        item_state getState() { return pData->state ; }
         
         CTodoItem* getNext() { return pNext ; };
         void setNext(CTodoItem* pNew) { if(pNew == NULL) return ; pNext = pNew ; } 
-	
-    protected: 
 
-        item_data_t data ; 
-      
+    protected:
+        item_data_t* pData ; 
+
     private:
         //list stuff...
         CTodoItem* pNext ; 
