@@ -16,13 +16,14 @@ CTodoList::~CTodoList()
     }
 }
 
+/*
 void CTodoList::swap(CTodoItem *a, CTodoItem *b) 
 { 
     item_data_t temp = a->data; 
     a->data = b->data; 
     b->data = temp; 
 }
-
+*/
 //traditinal "bubbleSort".... ugly memcpy in the end...
 void CTodoList::sort()
 {

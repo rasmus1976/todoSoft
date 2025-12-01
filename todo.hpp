@@ -2,7 +2,7 @@
 
 using namespace std;
 
-static int counter = 0;
+static int counter = -1 ; // take constructor into account (list as well)
 
 typedef enum {
 	prio = 0, // we want prio always top of list...
@@ -22,18 +22,25 @@ class CTodoItem
 	public:
 		CTodoItem()
 		{
-            data.ID = counter ;
-            counter ++; //head will get 0 in list:construct() so start inc here..
-			data.state = normal ;
+            data.ID = counter ; //head will be ID 0
+            counter ++; 
+            data.state = normal ;
             pNext = NULL ;
-		//	printf("item construct!\n");
+			//printf("item construct!\n");
 		}
 		~CTodoItem()
         { 
 		//	printf("item destruct\n");
 		}
+        
+        void swap(CTodoItem *a, CTodoItem *b) 
+        { 
+            item_data_t temp = a->data; 
+            a->data = b->data; 
+            b->data = temp; 
+        }
 
-        // only getter/setters...
+        // getter/setters...
         void updateState(item_state newState) { data.state = newState ; }
         
         void setName(string newName) { data.name = newName ; }
@@ -45,15 +52,16 @@ class CTodoItem
         CTodoItem* getNext() { return pNext ; };
         void setNext(CTodoItem* pNew) { if(pNew == NULL) return ; pNext = pNew ; } 
 	
-        item_data_t data ; 
-        
-    private:
+    protected: 
 
+        item_data_t data ; 
+      
+    private:
         //list stuff...
         CTodoItem* pNext ; 
 };
 
-class CTodoList
+class CTodoList : CTodoItem
 {
 	public:
 
@@ -67,7 +75,7 @@ class CTodoList
 
     private:
 
-        void swap(CTodoItem *a, CTodoItem *b);
+       // void swap(CTodoItem *a, CTodoItem *b);
         void sort();
         void destroy();
         void insertItem(CTodoItem* newItem);
