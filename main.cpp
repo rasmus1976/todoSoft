@@ -1,7 +1,3 @@
-using namespace std;
-
-//#include <list>
-#include <string>
 #include "todo.hpp"
 
 int main ()

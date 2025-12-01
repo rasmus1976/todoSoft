@@ -18,12 +18,12 @@ CTodoList::~CTodoList()
 
 void CTodoList::swap(CTodoItem *a, CTodoItem *b) 
 { 
-    item_data temp = a->data; 
+    item_data_t temp = a->data; 
     a->data = b->data; 
     b->data = temp; 
 }
 
-        //traditinal "bubbleSort"....
+//traditinal "bubbleSort".... ugly memcpy in the end...
 void CTodoList::sort()
 {
     if(sorted) return ;
@@ -148,7 +148,8 @@ void CTodoList::destroy()
     }
 }
 
-void CTodoList::insertItem(CTodoItem* newItem){
+void CTodoList::insertItem(CTodoItem* newItem)
+{
     CTodoItem* pTemp = pList;
     while(pTemp->getNext() != NULL)
     {

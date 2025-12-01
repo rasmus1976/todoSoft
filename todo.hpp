@@ -10,11 +10,12 @@ typedef enum {
 	done // and done last... (this works with bubblesort)
 }  item_state;
 
-typedef struct item_data {
-    int ID ;
+//Not very optimezed struct (mem-usage) but not important for this... (string destroys this anyway...)
+typedef struct {
+    int ID ; // int ID:8
+    item_state state ;
     string name ;
-	item_state state ;
-} item_data;
+} item_data_t;
 
 class CTodoItem
 {
@@ -28,45 +29,31 @@ class CTodoItem
 		//	printf("item construct!\n");
 		}
 		~CTodoItem()
-		{ 
+        { 
 		//	printf("item destruct\n");
 		}
 
-        void updateState(item_state newState)
-        {
-            data.state = newState ;
-        }
-        void setName(string newName)
-        {
-            data.name = newName ;
-        }
-        const char* getName() { 
-            return data.name.c_str() ;
-        }
-        int getID()
-        {
-            return data.ID;
-        }
-        item_state getState(){
-            return data.state ;
-        }
-        CTodoItem* getNext() {
-            return pNext ;
-        };
-        void setNext(CTodoItem* pNew) {
-            if(pNew == NULL) return ;
-            pNext = pNew ;
-        };
+        // only getter/setters...
+        void updateState(item_state newState) { data.state = newState ; }
+        
+        void setName(string newName) { data.name = newName ; }
+        const char* getName() { return data.name.c_str() ; }
+        
+        int getID() { return data.ID; }
+        item_state getState() { return data.state ; }
+        
+        CTodoItem* getNext() { return pNext ; };
+        void setNext(CTodoItem* pNew) { if(pNew == NULL) return ; pNext = pNew ; } 
 	
-        item_data data ; 
-                 
-	private:
+        item_data_t data ; 
+        
+    private:
 
         //list stuff...
         CTodoItem* pNext ; 
 };
 
-class CTodoList //: public CTodoItem
+class CTodoList
 {
 	public:
 
@@ -74,7 +61,6 @@ class CTodoList //: public CTodoItem
 		~CTodoList();
 
         void addItem(string name);
-
         void updateItem(int ID, item_state state, string name = "");
 
         void printList();      
@@ -82,15 +68,11 @@ class CTodoList //: public CTodoItem
     private:
 
         void swap(CTodoItem *a, CTodoItem *b);
-
-        //traditional "bubbleSort"....
         void sort();
-
         void destroy();
+        void insertItem(CTodoItem* newItem);
 
         bool sorted ;
-            
-        void insertItem(CTodoItem* newItem);
 
         CTodoItem* pList ;
 };
