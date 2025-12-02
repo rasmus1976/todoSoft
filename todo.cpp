@@ -24,7 +24,8 @@ void CTodoList::swap(CTodoItem *a, CTodoItem *b)
     b->data = temp; 
 }
 */
-//traditinal "bubbleSort".... ugly memcpy in the end...
+//traditinal "bubbleSort".... 
+//works "ok" since small dataset expected.
 void CTodoList::sort()
 {
     if(sorted) return ;
